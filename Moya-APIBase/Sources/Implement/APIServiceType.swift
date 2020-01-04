@@ -14,15 +14,15 @@ public protocol APIServiceType: ServiceType where Info: APIInfoType, Parser: API
 
 extension APIServiceType where Engine.Target == Parser.Origin, ServiceResult == Parser.Target {
     
-    var engineInfoTransition: (Info, Info.Parameter) -> Engine.Info {
+    public var engineInfoTransition: (Info, Info.Parameter) -> Engine.Info {
         return Self.defaultEngineInfoTransition
     }
     
-    var parserOriginTransition: (Engine.Target) -> Parser.Origin {
+    public var parserOriginTransition: (Engine.Target) -> Parser.Origin {
         return { o in return o }
     }
     
-    var serviceResultTransition: (Parser.Target) -> ServiceResult {
+    public var serviceResultTransition: (Parser.Target) -> ServiceResult {
         return { o in return o }
     }
 }

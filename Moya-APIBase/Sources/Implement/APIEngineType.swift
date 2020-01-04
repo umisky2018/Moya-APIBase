@@ -23,7 +23,8 @@ open class MoyaEngine: APIEngineType {
         self._provider = provider
     }
     
-    public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable {
+    /// 引擎启动方法，子类重写该方法可修改引擎工作方式。
+    open func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable {
         return self._provider.request(MultiTarget(info), callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {
             case .success(let response):

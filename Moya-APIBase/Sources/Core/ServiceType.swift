@@ -43,7 +43,7 @@ public protocol ServiceType {
 
 extension ServiceType {
     
-    func activate(parameter: Info.Parameter, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(parameter: Info.Parameter, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
         return _activate(parameter: parameter, condition: .default(), completion: completion)
     }
 }
