@@ -11,10 +11,3 @@ import Foundation
 public protocol APIInfoType: InfoType {
     
 }
-
-extension APIInfoType {
-    
-    public func validation() -> ValidationType {
-        return .none
-    }
-}

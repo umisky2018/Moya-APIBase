@@ -1,5 +1,5 @@
 //
-//  APIEngineType.swift
+//  DefaultEngineType.swift
 //  Moya-APIBase
 //
 //  Created by umisky on 2020/1/4.
@@ -8,25 +8,24 @@
 
 import Foundation
 
-public let defaultProvider = Provider<MultiTarget>()
+public let stubProvider = Provider<MultiTarget>(stubClosure: Provider.delayedStub(2.0))
 
-public protocol APIEngineType: EngineType {
+public protocol DefaultEngineType: APIEngineType {
     
     associatedtype Info = TransitionTarget
+
+    associatedtype Target = Result<Response, ResponseError>
 }
 
-open class MoyaEngine: APIEngineType {
-
-    // Error 没有特定类型
-    public typealias Target = Result<Response, Error>
+public final class DefaultEngine: DefaultEngineType {
     
     public var provider: Provider<MultiTarget>
     
-    required public init(provider: Provider<MultiTarget> = defaultProvider) {
+    public init(provider: Provider<MultiTarget> = defaultProvider) {
         self.provider = provider
     }
     
-    public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, Error>) -> Void) -> Cancellable {
+    public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, ResponseError>) -> Void) -> Cancellable {
         let provider = condition.stubBehavior ? stubProvider : self.provider
         return provider.request(MultiTarget(info), callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {

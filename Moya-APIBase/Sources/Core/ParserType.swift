@@ -18,5 +18,5 @@ public protocol ParserType {
     associatedtype Target
     
     /// 解析方法
-    func parse(origin: Origin) -> Target
+    func parse(origin: Origin) throws -> Target
 }
