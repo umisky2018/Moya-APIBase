@@ -8,48 +8,42 @@
 
 import Foundation
 
-public protocol TempServiceType: APIServiceType where Info: DefaultInfoType, Parser: DefaultParserType, Engine: DefaultEngineType, ServiceResult == Result<Parser.Target, ResponseError>  {
+public protocol DefaultServiceType: APIServiceType where ServiceResult == Result<Parser.Target, ResponseError>, Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine {
+    
+    associatedtype Engine = DefaultEngine
     
     associatedtype ServiceResult = Result<Parser.Target, ResponseError>
-}
-
-public protocol DefaultServiceType: TempServiceType {
     
-    // MARK: - 转换
+    var engineInfoTransition: (Info, Info.Parameter) throws -> Engine.Info { get }
     
-    typealias EngineInfoTransition = (Info, Info.Parameter) throws -> Engine.Info
+    var parserOriginTransition: (Engine.Target) throws -> Parser.Origin { get }
     
-    typealias ParserOriginTransition = (Engine.Target) throws -> Parser.Origin
-    
-    typealias ServiceResultTransition = (Parser.Target) -> ServiceResult
-    
-    var engineInfoTransition: EngineInfoTransition { get }
-    
-    var parserOriginTransition: ParserOriginTransition { get }
-    
-    var serviceResultTransition: ServiceResultTransition { get }
+    var serviceResultTransition: (Parser.Target) -> ServiceResult { get }
 }
 
 extension DefaultServiceType {
 
-    public func getEngine() -> DefaultEngine {
+    public func getEngine() -> Engine {
         return DefaultEngine()
     }
 }
 
 extension DefaultServiceType {
 
-    public func activate(parameter: Info.Parameter, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
-        return invokeActivate(parameter: parameter, condition: .default(), completion: completion)
+    @discardableResult
+    public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+        return invokeActivate(parameter: parameter, condition: condition, completion: completion)
     }
 }
 
 extension DefaultServiceType where Info.Parameter == Void {
 
+    @discardableResult
     public func activate(completion: @escaping (ServiceResult) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: .default(), completion: completion)
     }
 
+    @discardableResult
     public func activate(condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: condition, completion: completion)
     }
@@ -85,9 +79,9 @@ extension DefaultServiceType {
 
 // MARK: - Transition
 
-extension DefaultServiceType where Engine.Info == TransitionTarget {
+extension DefaultServiceType {
         
-    public var engineInfoTransition: EngineInfoTransition {
+    public var engineInfoTransition: (Info, Info.Parameter) throws -> Engine.Info {
         return Self.defaultEngineInfoTransition
     }
     
@@ -104,9 +98,9 @@ extension DefaultServiceType where Engine.Info == TransitionTarget {
     }
 }
 
-extension DefaultServiceType where Engine.Target == Result<Response, ResponseError> {
+extension DefaultServiceType {
     
-    public var parserOriginTransition: ParserOriginTransition {
+    public var parserOriginTransition: (Engine.Target) throws -> Parser.Origin {
         return Self.defaultParserOriginTransition
     }
 
@@ -120,9 +114,9 @@ extension DefaultServiceType where Engine.Target == Result<Response, ResponseErr
     }
 }
 
-extension DefaultServiceType where ServiceResult == Result<Parser.Target, ResponseError> {
+extension DefaultServiceType {
     
-    public var serviceResultTransition: ServiceResultTransition {
+    public var serviceResultTransition: (Parser.Target) -> ServiceResult {
         return Self.defaultServiceResultTransition
     }
     
