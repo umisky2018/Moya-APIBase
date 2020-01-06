@@ -8,8 +8,8 @@
 
 import Foundation
 
-public protocol DefaultServiceType: APIServiceType where ServiceResult == Result<Parser.Target, ResponseError>, Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine {
-    
+public protocol DefaultServiceType: ServiceType where ServiceResult == Result<Parser.Target, ResponseError>, Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine {
+        
     associatedtype Engine = DefaultEngine
     
     associatedtype ServiceResult = Result<Parser.Target, ResponseError>
@@ -26,9 +26,6 @@ extension DefaultServiceType {
     public func getEngine() -> Engine {
         return DefaultEngine()
     }
-}
-
-extension DefaultServiceType {
 
     @discardableResult
     public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
