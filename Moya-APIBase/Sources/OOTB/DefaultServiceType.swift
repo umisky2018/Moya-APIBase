@@ -8,17 +8,11 @@
 
 import Foundation
 
-public protocol DefaultServiceType: ServiceType where ServiceResult == Result<Parser.Target, ResponseError>, Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine {
-        
+public protocol DefaultServiceType: APIServiceType where Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine, ServiceResult == Parser.Target, ServiceError == ResponseError {
+    
     associatedtype Engine = DefaultEngine
     
-    associatedtype ServiceResult = Result<Parser.Target, ResponseError>
-    
-    var engineInfoTransition: (Info, Info.Parameter) throws -> Engine.Info { get }
-    
-    var parserOriginTransition: (Engine.Target) throws -> Parser.Origin { get }
-    
-    var serviceResultTransition: (Parser.Target) -> ServiceResult { get }
+    associatedtype ServiceError = ResponseError
 }
 
 extension DefaultServiceType {
@@ -27,45 +21,46 @@ extension DefaultServiceType {
         return DefaultEngine()
     }
 
+    /// 111
     @discardableResult
-    public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<Parser.Target, ResponseError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: parameter, condition: condition, completion: completion)
     }
 }
 
 extension DefaultServiceType where Info.Parameter == Void {
 
+    /// 222
     @discardableResult
-    public func activate(completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: .default(), completion: completion)
     }
 
+    /// 333
     @discardableResult
-    public func activate(condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(condition: APICondition, completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: condition, completion: completion)
     }
 }
 
 extension DefaultServiceType {
 
-    internal func invokeActivate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    internal func invokeActivate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable {
         let info = getInfo()
-        let engine = getEngine()
-        let parser = getParser()
 
         var engineInfo: Engine.Info
         do {
-            engineInfo =  try self.engineInfoTransition(info, parameter)
+            engineInfo =  try self.engineInfoTransition(info: info, parameter: parameter)
         } catch {
             completion(.failure(error.asResponseError()))
             return VoidCancellable()
         }
 
-        return engine.startEngine(info: engineInfo, condition: condition) { result in
+        return getEngine().startEngine(info: engineInfo, condition: condition) { result in
             do {
-                let parserOrigin = try self.parserOriginTransition(result)
-                let target = try parser.parse(origin: parserOrigin)
-                let success = self.serviceResultTransition(target)
+                let parserOrigin = try self.parserOriginTransition(info: result)
+                let target = try self.getParser().parse(origin: parserOrigin)
+                let success = self.serviceResultTransition(info: target)
                 completion(success)
             } catch {
                 completion(.failure(error.asResponseError()))
@@ -78,30 +73,7 @@ extension DefaultServiceType {
 
 extension DefaultServiceType {
         
-    public var engineInfoTransition: (Info, Info.Parameter) throws -> Engine.Info {
-        return Self.defaultEngineInfoTransition
-    }
-    
-    internal static func defaultEngineInfoTransition(info: Info, parameter: Info.Parameter) throws -> Engine.Info {
-        let _url = URL(string: info.hostPath())
-        guard let url = _url else { throw ResponseError(status: .infoError, message: "Host 地址有误", error: nil) }
-        let path = info.relativePath(parameter: parameter)
-        let method = info.method(parameter: parameter)
-        let task = info.task(parameter: parameter)
-        let headers = info.headers(parameter: parameter)
-        let validation = info.validation()
-        let sample = info.sampleData()
-        return TransitionTarget(baseURL: url, path: path, method: method, sampleData: sample, task: task, headers: headers, validationType: validation)
-    }
-}
-
-extension DefaultServiceType {
-    
-    public var parserOriginTransition: (Engine.Target) throws -> Parser.Origin {
-        return Self.defaultParserOriginTransition
-    }
-
-    internal static func defaultParserOriginTransition(info: Engine.Target) throws -> Parser.Origin {
+    public func parserOriginTransition(info: Engine.Target) throws -> Parser.Origin {
         switch info {
         case .success(let response):
             return response
@@ -109,15 +81,8 @@ extension DefaultServiceType {
             throw error
         }
     }
-}
-
-extension DefaultServiceType {
     
-    public var serviceResultTransition: (Parser.Target) -> ServiceResult {
-        return Self.defaultServiceResultTransition
-    }
-    
-    internal static func defaultServiceResultTransition(info: Parser.Target) -> ServiceResult {
-        return Result.success(info)
+    public func serviceResultTransition(info: Parser.Target) -> Result<ServiceResult, ServiceError> {
+        return .success(info)
     }
 }
