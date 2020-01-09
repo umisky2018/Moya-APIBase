@@ -18,17 +18,17 @@ open class APICondition {
 
     public init() { }
     
-    public func specify(dispatchQueue: DispatchQueue) -> Self {
+    public func specify(_ dispatchQueue: DispatchQueue) -> Self {
         self.dispatchQueue = dispatchQueue
         return self
     }
 
-    public func specify(progressBlock: @escaping ((ProgressResponse) -> Void)) -> Self {
+    public func specify(_ progressBlock: @escaping ((ProgressResponse) -> Void)) -> Self {
         self.progressBlock = progressBlock
         return self
     }
     
-    public func specify(stubBehavior: Bool) -> Self {
+    public func specify(_ stubBehavior: Bool) -> Self {
         self.stubBehavior = stubBehavior
         return self
     }
@@ -43,6 +43,6 @@ extension APICondition {
     
     /// 主线程
     public static func main() -> APICondition {
-        return APICondition().specify(dispatchQueue: .main)
+        return APICondition().specify(.main)
     }
 }

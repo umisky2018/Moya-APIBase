@@ -21,7 +21,6 @@ extension DefaultServiceType {
         return DefaultEngine()
     }
 
-    /// 111
     @discardableResult
     public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<Parser.Target, ResponseError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: parameter, condition: condition, completion: completion)
@@ -30,13 +29,11 @@ extension DefaultServiceType {
 
 extension DefaultServiceType where Info.Parameter == Void {
 
-    /// 222
     @discardableResult
     public func activate(completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: .default(), completion: completion)
     }
 
-    /// 333
     @discardableResult
     public func activate(condition: APICondition, completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: condition, completion: completion)
