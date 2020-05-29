@@ -12,12 +12,16 @@ import Foundation
 
 public protocol DefaultInfoType: APIInfoType {
     
+    /// 全局 Header
     func globalHeader() -> [String: String]?
     
+    /// 全局 Query
     func globalQuery() -> [String: Any]?
     
+    /// 子协议不直接调用 header:，使用这个函数
     func invokeHeader(parameter: Parameter) -> [String: String]?
     
+    /// 子协议不直接调用 task:，使用这个函数
     func invokeQuery(parameter: Parameter) -> [String: Any]?
 }
 
@@ -40,40 +44,47 @@ extension DefaultInfoType {
     }
 }
 
+// MARK: - 默认功能
+
 extension DefaultInfoType {
     
     public func headers(parameter: Parameter) -> [String : String]? {
         let header = self.invokeHeader(parameter: parameter)
         let globalHeader = self.globalHeader()
         
-        if header == nil, globalHeader == nil { return nil }
+        if let _header = header, let _globalheader = globalHeader {
+            /// 自定义 header 优先级最高
+            return _globalheader.merging(_header) { _, e2 in return e2 }
+        }
+        
         if header == nil { return globalHeader }
         if globalHeader == nil { return header }
-        
-        return globalHeader?.merging(header ?? [:]) { (e1, e2) in e1 }
+        return nil
     }
     
     public func task(parameter: Parameter) -> APITask {
         let query = self.invokeQuery(parameter: parameter)
         let globalQuery = self.globalQuery()
         
-        let _query = query ?? [:]
-        let _globalQuery = globalQuery ?? [:]
+        var totalQuery: [String: Any] = [:]
         
-        let total = _globalQuery.merging(_query) { (e1, e2) in return e1 }
-        
-        if total.count > 0 {
-            return .requestParameters(parameters: total, encoding: URLEncoding.default)
+        if let _globalQuery = globalQuery {
+            totalQuery.merge(_globalQuery) { _ , e2 in return  e2 }
         }
         
-        // 保留原始数据信息
-        if query != nil || globalQuery != nil {
+        if let _query = query {
+            totalQuery.merge(_query) { _ , e2 in return  e2 }
+        }
+                
+        if totalQuery.count > 0 {
+            return .requestParameters(parameters: totalQuery, encoding: URLEncoding.default)
+        } else if query != nil || globalQuery != nil {
             return .requestParameters(parameters: [:], encoding: URLEncoding.default)
         } else {
             return .requestPlain
         }
     }
-
+    
     public func validation() -> ValidationType {
         return .none
     }

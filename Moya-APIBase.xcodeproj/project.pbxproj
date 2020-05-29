@@ -467,8 +467,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
-				kind = revision;
-				revision = 05f7bbd3c90c7546df5fc8d736213c8ced99a8b7;
+				kind = exactVersion;
+				version = 14.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
