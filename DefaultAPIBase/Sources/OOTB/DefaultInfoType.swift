@@ -26,7 +26,7 @@ public protocol DefaultInfoType: APIInfoType {
     func invokeQuery(parameter: Parameter) -> [String: Any]?
 }
 
-extension DefaultInfoType {
+public extension DefaultInfoType {
     
     func globalHeader() -> [String: String]? {
         return nil

@@ -24,7 +24,7 @@ extension DefaultServiceType {
         return DefaultEngine()
     }
     
-    func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
         return invokeActivate(parameter: parameter, condition: condition, completion: completion)
     }
 }
