@@ -18,8 +18,6 @@ public protocol ServiceType {
     
     associatedtype ServiceResult
     
-    associatedtype ServiceError: Error
-    
     /// 获取信息
     func getInfo() -> Info
     
@@ -30,5 +28,5 @@ public protocol ServiceType {
     func getEngine() -> Engine
     
     /// 激活请求流程
-    func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceResult, ServiceError>) -> Void) -> Cancellable
+    func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable
 }

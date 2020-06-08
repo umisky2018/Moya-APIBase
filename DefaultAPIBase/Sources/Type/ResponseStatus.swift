@@ -45,6 +45,9 @@ extension ResponseStatus {
     
     /// 对普通错误的封装
     public static let wrapError = ResponseStatus(rawValue: rawOffset(target: 1_003))
+    
+    /// Host 错误
+    public static let hostError = ResponseStatus(rawValue: rawOffset(target: 1_004))
 }
 
 extension ResponseStatus {

@@ -10,5 +10,4 @@ import Foundation
 
 public protocol APIEngineType: EngineType {
     
-    associatedtype Info = TransitionTarget
 }

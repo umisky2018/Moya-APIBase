@@ -19,13 +19,12 @@
 		2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529FD23BFB7E900859AA0 /* APIServiceType.swift */; };
 		2CBD5107248E2A4E001818CB /* APICondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA39023BD1623004EF2E0 /* APICondition.swift */; };
 		2CBD5108248E2A4E001818CB /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529F523BFB39900859AA0 /* Cancellable.swift */; };
-		2CBD5109248E2A4E001818CB /* TransitionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */; };
 		2CBD510B248E2B49001818CB /* MoyaAPIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; };
 		2CBD510C248E2B49001818CB /* MoyaAPIBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2CBD5110248E2C9E001818CB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD510F248E2C9E001818CB /* APIError.swift */; };
 		2CBD5112248E2D01001818CB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 2CBD5111248E2D01001818CB /* Moya */; };
 		2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88623C067E200361737 /* ResponseStatus.swift */; };
 		2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88423C067D600361737 /* ResponseError.swift */; };
+		2CBD5115248E484D001818CB /* TransitionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */; };
 		2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CEBFF78248DE14F004DB1CD /* DefaultInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */; };
 		2CEBFF79248DE14F004DB1CD /* DefaultParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87E23C04EEC00361737 /* DefaultParserType.swift */; };
@@ -79,7 +78,6 @@
 		2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoyaAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBD50F8248E2A0D001818CB /* MoyaAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoyaAPIBase.h; sourceTree = "<group>"; };
 		2CBD50F9248E2A0D001818CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CBD510F248E2C9E001818CB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultAPIBase.h; sourceTree = "<group>"; };
 		2CEBFF70248DE0D8004DB1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,8 +160,6 @@
 			children = (
 				2C7FA39023BD1623004EF2E0 /* APICondition.swift */,
 				2C3529F523BFB39900859AA0 /* Cancellable.swift */,
-				2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */,
-				2CBD510F248E2C9E001818CB /* APIError.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -229,6 +225,7 @@
 			children = (
 				2C55F88623C067E200361737 /* ResponseStatus.swift */,
 				2C55F88423C067D600361737 /* ResponseError.swift */,
+				2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -371,12 +368,10 @@
 				2CBD5107248E2A4E001818CB /* APICondition.swift in Sources */,
 				2CBD50FE248E2A4E001818CB /* Associate.swift in Sources */,
 				2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */,
-				2CBD5109248E2A4E001818CB /* TransitionTarget.swift in Sources */,
 				2CBD5108248E2A4E001818CB /* Cancellable.swift in Sources */,
 				2CBD50FF248E2A4E001818CB /* InfoType.swift in Sources */,
 				2CBD5104248E2A4E001818CB /* APIParserType.swift in Sources */,
 				2CBD5101248E2A4E001818CB /* EngineType.swift in Sources */,
-				2CBD5110248E2C9E001818CB /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +385,7 @@
 				2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */,
 				2CEBFF7B248DE14F004DB1CD /* DefaultServiceType.swift in Sources */,
 				2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */,
+				2CBD5115248E484D001818CB /* TransitionTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
