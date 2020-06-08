@@ -27,6 +27,7 @@
 		2C7FA38A23BCF4BB004EF2E0 /* EngineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA38923BCF4BB004EF2E0 /* EngineType.swift */; };
 		2C7FA38C23BCF4C5004EF2E0 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA38B23BCF4C5004EF2E0 /* ServiceType.swift */; };
 		2C7FA39123BD1623004EF2E0 /* APICondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA39023BD1623004EF2E0 /* APICondition.swift */; };
+		2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,9 @@
 		2C7FA38923BCF4BB004EF2E0 /* EngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineType.swift; sourceTree = "<group>"; };
 		2C7FA38B23BCF4C5004EF2E0 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		2C7FA39023BD1623004EF2E0 /* APICondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICondition.swift; sourceTree = "<group>"; };
+		2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultAPIBase.h; sourceTree = "<group>"; };
+		2CEBFF70248DE0D8004DB1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7FA38323BCF3FF004EF2E0 /* Moya in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CEBFF6A248DE0D8004DB1CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7FA37423B8CEBC004EF2E0 /* Moya-APIBase */,
+				2CEBFF6E248DE0D8004DB1CD /* DefaultAPIBase */,
 				2C7FA37323B8CEBC004EF2E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7FA37223B8CEBC004EF2E0 /* Moya_APIBase.framework */,
+				2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +169,31 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
+		2CEBFF6E248DE0D8004DB1CD /* DefaultAPIBase */ = {
+			isa = PBXGroup;
+			children = (
+				2CEBFF76248DE10E004DB1CD /* Sources */,
+				2CEBFF75248DE0EE004DB1CD /* Supporting Files */,
+			);
+			path = DefaultAPIBase;
+			sourceTree = "<group>";
+		};
+		2CEBFF75248DE0EE004DB1CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */,
+				2CEBFF70248DE0D8004DB1CD /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CEBFF76248DE10E004DB1CD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -164,6 +202,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7FA37723B8CEBC004EF2E0 /* Moya_APIBase.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CEBFF68248DE0D8004DB1CD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +237,24 @@
 			productReference = 2C7FA37223B8CEBC004EF2E0 /* Moya_APIBase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		2CEBFF6C248DE0D8004DB1CD /* DefaultAPIBase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CEBFF74248DE0D8004DB1CD /* Build configuration list for PBXNativeTarget "DefaultAPIBase" */;
+			buildPhases = (
+				2CEBFF68248DE0D8004DB1CD /* Headers */,
+				2CEBFF69248DE0D8004DB1CD /* Sources */,
+				2CEBFF6A248DE0D8004DB1CD /* Frameworks */,
+				2CEBFF6B248DE0D8004DB1CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DefaultAPIBase;
+			productName = DefaultAPIBase;
+			productReference = 2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,6 +267,9 @@
 					2C7FA37123B8CEBC004EF2E0 = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1130;
+					};
+					2CEBFF6C248DE0D8004DB1CD = {
+						CreatedOnToolsVersion = 11.3;
 					};
 				};
 			};
@@ -223,12 +290,20 @@
 			projectRoot = "";
 			targets = (
 				2C7FA37123B8CEBC004EF2E0 /* Moya-APIBase */,
+				2CEBFF6C248DE0D8004DB1CD /* DefaultAPIBase */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2C7FA37023B8CEBC004EF2E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CEBFF6B248DE0D8004DB1CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,6 +335,13 @@
 				2C3529FA23BFB76600859AA0 /* APIParserType.swift in Sources */,
 				2C55F87F23C04EEC00361737 /* DefaultParserType.swift in Sources */,
 				2C7FA38A23BCF4BB004EF2E0 /* EngineType.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CEBFF69248DE0D8004DB1CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +521,56 @@
 			};
 			name = Release;
 		};
+		2CEBFF72248DE0D8004DB1CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CJZWD577A7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DefaultAPIBase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chenshu.DefaultAPIBase;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2CEBFF73248DE0D8004DB1CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CJZWD577A7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DefaultAPIBase/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = chenshu.DefaultAPIBase;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -456,6 +588,15 @@
 			buildConfigurations = (
 				2C7FA37B23B8CEBC004EF2E0 /* Debug */,
 				2C7FA37C23B8CEBC004EF2E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CEBFF74248DE0D8004DB1CD /* Build configuration list for PBXNativeTarget "DefaultAPIBase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CEBFF72248DE0D8004DB1CD /* Debug */,
+				2CEBFF73248DE0D8004DB1CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
