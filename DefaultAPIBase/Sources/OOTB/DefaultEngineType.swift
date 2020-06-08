@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Moya_APIBase
+import MoyaAPIBase
 
 public let defaultProvider = Provider<TransitionTarget>()
 public let stubProvider = Provider<TransitionTarget>(stubClosure: Provider.delayedStub(2.0))

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C7FA37123B8CEBC004EF2E0"
-               BuildableName = "Moya_APIBase.framework"
-               BlueprintName = "Moya-APIBase"
+               BlueprintIdentifier = "2CEBFF6C248DE0D8004DB1CD"
+               BuildableName = "DefaultAPIBase.framework"
+               BlueprintName = "DefaultAPIBase"
                ReferencedContainer = "container:Moya-APIBase.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C7FA37123B8CEBC004EF2E0"
-            BuildableName = "Moya_APIBase.framework"
-            BlueprintName = "Moya-APIBase"
+            BlueprintIdentifier = "2CEBFF6C248DE0D8004DB1CD"
+            BuildableName = "DefaultAPIBase.framework"
+            BlueprintName = "DefaultAPIBase"
             ReferencedContainer = "container:Moya-APIBase.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

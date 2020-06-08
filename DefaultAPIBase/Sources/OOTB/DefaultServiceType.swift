@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Moya_APIBase
+import MoyaAPIBase
 
 public protocol DefaultServiceType: APIServiceType where Info: DefaultInfoType, Parser: DefaultParserType, Engine == DefaultEngine, ServiceResult == Parser.Target, ServiceError == ResponseError {
     

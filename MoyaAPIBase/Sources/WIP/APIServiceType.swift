@@ -24,7 +24,7 @@ extension APIServiceType {
     
     public func engineInfoTransition(info: Info, parameter: Info.Parameter) throws -> TransitionTarget {
         let _url = URL(string: info.hostPath())
-        guard let url = _url else { throw ResponseError(status: .infoError, message: "Host 地址有误", error: nil) }
+        guard let url = _url else { throw APIError.host }
         let path = info.relativePath(parameter: parameter)
         let method = info.method(parameter: parameter)
         let task = info.task(parameter: parameter)

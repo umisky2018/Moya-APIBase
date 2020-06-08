@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Moya_APIBase
+import MoyaAPIBase
 
 // MARK: - DefaultInfoType
 
