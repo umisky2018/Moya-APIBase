@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya_APIBase
 
 // MARK: - DecodableParserType
 

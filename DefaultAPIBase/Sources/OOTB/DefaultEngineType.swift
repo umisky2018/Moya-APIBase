@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Moya_APIBase
 
-public let stubProvider = Provider<MultiTarget>(stubClosure: Provider.delayedStub(2.0))
+public let defaultProvider = Provider<TransitionTarget>()
+public let stubProvider = Provider<TransitionTarget>(stubClosure: Provider.delayedStub(2.0))
 
 public protocol DefaultEngineType: APIEngineType {
     
@@ -19,15 +21,15 @@ public protocol DefaultEngineType: APIEngineType {
 
 public final class DefaultEngine: DefaultEngineType {
     
-    public var provider: Provider<MultiTarget>
+    public var provider: Provider<TransitionTarget>
     
-    public init(provider: Provider<MultiTarget> = defaultProvider) {
+    public init(provider: Provider<TransitionTarget> = defaultProvider) {
         self.provider = provider
     }
     
     public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, ResponseError>) -> Void) -> Cancellable {
         let provider = condition.stubBehavior ? stubProvider : self.provider
-        return provider.request(MultiTarget(info), callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
+        return provider.request(info, callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

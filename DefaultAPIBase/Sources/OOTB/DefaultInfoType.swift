@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Moya_APIBase
 
 // MARK: - DefaultInfoType
 
@@ -18,7 +19,7 @@ public protocol DefaultInfoType: APIInfoType {
     /// 全局 Query
     func globalQuery() -> [String: Any]?
     
-    /// 子协议不直接调用 header:，使用这个函数
+    /// 子协议不直接调用 header:，而使用这个函数
     func invokeHeader(parameter: Parameter) -> [String: String]?
     
     /// 子协议不直接调用 task:，使用这个函数
