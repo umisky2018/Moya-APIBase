@@ -10,4 +10,20 @@ import Foundation
 
 public protocol APIInfoType: InfoType {
     
+    /// 全局 Header
+    func globalHeader() -> [String: String]?
+    
+    /// 全局 Query
+    func globalQuery() -> [String: Any]?
+}
+
+public extension APIInfoType {
+    
+    func globalHeader() -> [String: String]? {
+        return nil
+    }
+    
+    func globalQuery() -> [String: Any]? {
+        return nil
+    }
 }

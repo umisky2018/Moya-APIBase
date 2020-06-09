@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MoyaAPIBase
 
 public struct TransitionTarget {
     

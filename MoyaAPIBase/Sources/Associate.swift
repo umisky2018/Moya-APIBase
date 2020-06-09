@@ -23,6 +23,7 @@ public typealias ProgressBlock = Moya.ProgressBlock
 public typealias ProgressResponse = Moya.ProgressResponse
 public typealias StubBehavior = Moya.StubBehavior
 public typealias StubClosure = Moya.MoyaProvider<MultiTarget>.StubClosure
+public typealias MoyaError = Moya.MoyaError
 
 public typealias ParameterEncoding = Moya.ParameterEncoding
 public typealias JSONEncoding = Moya.JSONEncoding

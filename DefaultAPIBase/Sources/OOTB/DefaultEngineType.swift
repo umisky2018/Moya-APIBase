@@ -9,9 +9,6 @@
 import Foundation
 import MoyaAPIBase
 
-public let defaultProvider = Provider<TransitionTarget>()
-public let stubProvider = Provider<TransitionTarget>(stubClosure: Provider.delayedStub(2.0))
-
 public protocol DefaultEngineType: APIEngineType {
     
     associatedtype Info = TransitionTarget
@@ -28,7 +25,7 @@ public final class DefaultEngine: DefaultEngineType {
     }
     
     public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, ResponseError>) -> Void) -> Cancellable {
-        let provider = condition.stubBehavior ? stubProvider : self.provider
+        let provider = condition.stubBehavior ? stubProvider : provider
         return provider.request(info, callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {
             case .success(let response):

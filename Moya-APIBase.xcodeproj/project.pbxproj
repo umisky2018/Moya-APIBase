@@ -24,7 +24,6 @@
 		2CBD5112248E2D01001818CB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 2CBD5111248E2D01001818CB /* Moya */; };
 		2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88623C067E200361737 /* ResponseStatus.swift */; };
 		2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88423C067D600361737 /* ResponseError.swift */; };
-		2CBD5115248E484D001818CB /* TransitionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */; };
 		2CBD511D248E4CA7001818CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD511C248E4CA7001818CB /* AppDelegate.swift */; };
 		2CBD5121248E4CA7001818CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5120248E4CA7001818CB /* ViewController.swift */; };
 		2CBD5124248E4CA7001818CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD5122248E4CA7001818CB /* Main.storyboard */; };
@@ -38,6 +37,7 @@
 		2CBD513C248E4D77001818CB /* TestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5138248E4D77001818CB /* TestInfo.swift */; };
 		2CBD513D248E5118001818CB /* MoyaAPIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; };
 		2CBD513E248E5118001818CB /* MoyaAPIBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CC0D11E248F966500437AED /* TransitionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0D11D248F966500437AED /* TransitionTarget.swift */; };
 		2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CEBFF78248DE14F004DB1CD /* DefaultInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */; };
 		2CEBFF79248DE14F004DB1CD /* DefaultParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87E23C04EEC00361737 /* DefaultParserType.swift */; };
@@ -101,7 +101,6 @@
 		2C3529F923BFB76600859AA0 /* APIParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParserType.swift; sourceTree = "<group>"; };
 		2C3529FB23BFB7DF00859AA0 /* APIEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEngineType.swift; sourceTree = "<group>"; };
 		2C3529FD23BFB7E900859AA0 /* APIServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceType.swift; sourceTree = "<group>"; };
-		2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionTarget.swift; sourceTree = "<group>"; };
 		2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInfoType.swift; sourceTree = "<group>"; };
 		2C55F87E23C04EEC00361737 /* DefaultParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultParserType.swift; sourceTree = "<group>"; };
 		2C55F88023C05A5A00361737 /* DefaultEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEngineType.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		2CBD5136248E4D77001818CB /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		2CBD5137248E4D77001818CB /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
 		2CBD5138248E4D77001818CB /* TestInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInfo.swift; sourceTree = "<group>"; };
+		2CC0D11D248F966500437AED /* TransitionTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionTarget.swift; sourceTree = "<group>"; };
 		2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultAPIBase.h; sourceTree = "<group>"; };
 		2CEBFF70248DE0D8004DB1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -221,6 +221,7 @@
 			children = (
 				2C7FA39023BD1623004EF2E0 /* APICondition.swift */,
 				2C3529F523BFB39900859AA0 /* Cancellable.swift */,
+				2CC0D11D248F966500437AED /* TransitionTarget.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -319,7 +320,6 @@
 			children = (
 				2C55F88623C067E200361737 /* ResponseStatus.swift */,
 				2C55F88423C067D600361737 /* ResponseError.swift */,
-				2C352A0123BFBF0900859AA0 /* TransitionTarget.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -497,6 +497,7 @@
 				2CBD5107248E2A4E001818CB /* APICondition.swift in Sources */,
 				2CBD50FE248E2A4E001818CB /* Associate.swift in Sources */,
 				2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */,
+				2CC0D11E248F966500437AED /* TransitionTarget.swift in Sources */,
 				2CBD5108248E2A4E001818CB /* Cancellable.swift in Sources */,
 				2CBD50FF248E2A4E001818CB /* InfoType.swift in Sources */,
 				2CBD5104248E2A4E001818CB /* APIParserType.swift in Sources */,
@@ -527,7 +528,6 @@
 				2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */,
 				2CEBFF7B248DE14F004DB1CD /* DefaultServiceType.swift in Sources */,
 				2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */,
-				2CBD5115248E484D001818CB /* TransitionTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

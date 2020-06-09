@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol APIParserType: ParserType {
+public protocol APIParserType: ParserType where Origin == Response {
     
     associatedtype Origin = Response
 }
