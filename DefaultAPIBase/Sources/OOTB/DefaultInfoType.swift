@@ -35,14 +35,6 @@ public extension DefaultInfoType {
     func globalQuery() -> [String: Any]? {
         return nil
     }
-    
-    func invokeHeader(parameter: Parameter) -> [String: String]? {
-        return nil
-    }
-    
-    func invokeQuery(parameter: Parameter) -> [String: Any]? {
-        return nil
-    }
 }
 
 // MARK: - 默认功能

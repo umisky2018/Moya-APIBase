@@ -10,7 +10,7 @@ import Foundation
 import MoyaAPIBase
 import DefaultAPIBase
 
-struct TestInfo: DefaultInfoType {
+struct TestInfo: DefaultInfoType {    
 
     typealias Parameter = Void
     
@@ -19,14 +19,18 @@ struct TestInfo: DefaultInfoType {
     }
 
     func relativePath(parameter: Parameter) -> String {
-        return ""
+        return "/post/5e7b2348e51d4526eb227c82"
     }
 
     func method(parameter: Parameter) -> APIMethod {
         return .get
     }
 
-    func query(parameter: Parameter) -> [String : Any]? {
+    func invokeQuery(parameter: Void) -> [String : Any]? {
+        return nil
+    }
+
+    func invokeHeader(parameter: Void) -> [String : String]? {
         return nil
     }
 }
