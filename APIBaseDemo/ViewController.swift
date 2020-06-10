@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        TestService().activate { result in
+        WeatherService().activateNormal(parameter: "1012201011") { result in
             switch result {
             case .success(let value):
                 print(value)
@@ -22,9 +21,6 @@ class ViewController: UIViewController {
                 print(error)
             }
         }
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
