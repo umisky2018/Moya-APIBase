@@ -18,5 +18,5 @@ public protocol EngineType {
     associatedtype Target
     
     /// 启动引擎
-    func startEngine(info: Info, condition: APICondition, completion: @escaping (Target) -> Void) -> Cancellable
+    func startEngine(info: Info, condition: APIConfiguration, completion: @escaping (Target) -> Void) -> Cancellable
 }

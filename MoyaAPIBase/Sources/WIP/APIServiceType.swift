@@ -27,7 +27,7 @@ public protocol APIServiceType: ServiceType where Info: APIInfoType, Parser: API
 extension APIServiceType  {
     
     /// 默认激活流程
-    public func defaultActivate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
+    public func defaultActivate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
         let info = getInfo()
         
         var engineInfo: Engine.Info

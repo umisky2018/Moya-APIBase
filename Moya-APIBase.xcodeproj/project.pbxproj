@@ -17,7 +17,7 @@
 		2CBD5104248E2A4E001818CB /* APIParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529F923BFB76600859AA0 /* APIParserType.swift */; };
 		2CBD5105248E2A4E001818CB /* APIEngineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529FB23BFB7DF00859AA0 /* APIEngineType.swift */; };
 		2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529FD23BFB7E900859AA0 /* APIServiceType.swift */; };
-		2CBD5107248E2A4E001818CB /* APICondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA39023BD1623004EF2E0 /* APICondition.swift */; };
+		2CBD5107248E2A4E001818CB /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA39023BD1623004EF2E0 /* APIConfiguration.swift */; };
 		2CBD5108248E2A4E001818CB /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529F523BFB39900859AA0 /* Cancellable.swift */; };
 		2CBD510B248E2B49001818CB /* MoyaAPIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; };
 		2CBD510C248E2B49001818CB /* MoyaAPIBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,8 +29,6 @@
 		2CBD5124248E4CA7001818CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD5122248E4CA7001818CB /* Main.storyboard */; };
 		2CBD5126248E4CAA001818CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD5125248E4CAA001818CB /* Assets.xcassets */; };
 		2CBD5129248E4CAA001818CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD5127248E4CAA001818CB /* LaunchScreen.storyboard */; };
-		2CBD512E248E4CBC001818CB /* DefaultAPIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */; };
-		2CBD512F248E4CBC001818CB /* DefaultAPIBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CBD5139248E4D77001818CB /* TestParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5135248E4D77001818CB /* TestParser.swift */; };
 		2CBD513A248E4D77001818CB /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5136248E4D77001818CB /* TestModel.swift */; };
 		2CBD513B248E4D77001818CB /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5137248E4D77001818CB /* TestService.swift */; };
@@ -53,13 +51,6 @@
 			remoteGlobalIDString = 2CBD50F5248E2A0D001818CB;
 			remoteInfo = MoyaAPIBase;
 		};
-		2CBD5130248E4CBC001818CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C7FA36923B8CEBC004EF2E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CEBFF6C248DE0D8004DB1CD;
-			remoteInfo = DefaultAPIBase;
-		};
 		2CBD513F248E5118001818CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C7FA36923B8CEBC004EF2E0 /* Project object */;
@@ -77,7 +68,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2CBD513E248E5118001818CB /* MoyaAPIBase.framework in Embed Frameworks */,
-				2CBD512F248E4CBC001818CB /* DefaultAPIBase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,7 +102,7 @@
 		2C7FA38723BCF4B2004EF2E0 /* ParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserType.swift; sourceTree = "<group>"; };
 		2C7FA38923BCF4BB004EF2E0 /* EngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineType.swift; sourceTree = "<group>"; };
 		2C7FA38B23BCF4C5004EF2E0 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
-		2C7FA39023BD1623004EF2E0 /* APICondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICondition.swift; sourceTree = "<group>"; };
+		2C7FA39023BD1623004EF2E0 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MoyaAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBD50F8248E2A0D001818CB /* MoyaAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoyaAPIBase.h; sourceTree = "<group>"; };
 		2CBD50F9248E2A0D001818CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,7 +137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBD513D248E5118001818CB /* MoyaAPIBase.framework in Frameworks */,
-				2CBD512E248E4CBC001818CB /* DefaultAPIBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +208,7 @@
 		2C7FA38D23BD0C97004EF2E0 /* Type */ = {
 			isa = PBXGroup;
 			children = (
-				2C7FA39023BD1623004EF2E0 /* APICondition.swift */,
+				2C7FA39023BD1623004EF2E0 /* APIConfiguration.swift */,
 				2C3529F523BFB39900859AA0 /* Cancellable.swift */,
 				2CC0D11D248F966500437AED /* TransitionTarget.swift */,
 			);
@@ -386,7 +375,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2CBD5131248E4CBC001818CB /* PBXTargetDependency */,
 				2CBD5140248E5118001818CB /* PBXTargetDependency */,
 			);
 			name = APIBaseDemo;
@@ -494,7 +482,7 @@
 				2CBD5103248E2A4E001818CB /* APIInfoType.swift in Sources */,
 				2CBD5102248E2A4E001818CB /* ServiceType.swift in Sources */,
 				2CBD5100248E2A4E001818CB /* ParserType.swift in Sources */,
-				2CBD5107248E2A4E001818CB /* APICondition.swift in Sources */,
+				2CBD5107248E2A4E001818CB /* APIConfiguration.swift in Sources */,
 				2CBD50FE248E2A4E001818CB /* Associate.swift in Sources */,
 				2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */,
 				2CC0D11E248F966500437AED /* TransitionTarget.swift in Sources */,
@@ -538,11 +526,6 @@
 			isa = PBXTargetDependency;
 			target = 2CBD50F5248E2A0D001818CB /* MoyaAPIBase */;
 			targetProxy = 2CBD510D248E2B49001818CB /* PBXContainerItemProxy */;
-		};
-		2CBD5131248E4CBC001818CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CEBFF6C248DE0D8004DB1CD /* DefaultAPIBase */;
-			targetProxy = 2CBD5130248E4CBC001818CB /* PBXContainerItemProxy */;
 		};
 		2CBD5140248E5118001818CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

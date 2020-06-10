@@ -24,7 +24,7 @@ public final class DefaultEngine: DefaultEngineType {
         self.provider = provider
     }
     
-    public func startEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, ResponseError>) -> Void) -> Cancellable {
+    public func startEngine(info: TransitionTarget, condition: APIConfiguration, completion: @escaping (Result<Response, ResponseError>) -> Void) -> Cancellable {
         let provider = condition.stubBehavior ? stubProvider : provider
         return provider.request(info, callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {

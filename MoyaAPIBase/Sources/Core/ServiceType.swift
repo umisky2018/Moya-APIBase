@@ -28,5 +28,5 @@ public protocol ServiceType {
     func getEngine() -> Engine
     
     /// 激活请求流程
-    func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable
+    func activate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (ServiceResult) -> Void) -> Cancellable
 }

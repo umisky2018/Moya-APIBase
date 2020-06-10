@@ -18,7 +18,7 @@ public protocol APIEngineType: EngineType {
 extension APIEngineType {
     
     /// 默认启动引擎流程
-    public func defaultStartEngine(info: TransitionTarget, condition: APICondition, completion: @escaping (Result<Response, MoyaError>) -> Void) -> Cancellable {
+    public func defaultStartEngine(info: TransitionTarget, condition: APIConfiguration, completion: @escaping (Result<Response, MoyaError>) -> Void) -> Cancellable {
         return condition.inUseProvider.request(info, callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {
             case .success(let response):

@@ -24,14 +24,14 @@ extension DefaultServiceType {
         return DefaultEngine()
     }
     
-    public func activate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
+    public func activate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
         return invokeActivate(parameter: parameter, condition: condition, completion: completion)
     }
 }
 
 extension DefaultServiceType {
 
-    internal func invokeActivate(parameter: Info.Parameter, condition: APICondition, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
+    internal func invokeActivate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
         let info = getInfo()
 
         var engineInfo: Engine.Info
@@ -65,7 +65,7 @@ extension DefaultServiceType where Info.Parameter == Void {
     }
 
     @discardableResult
-    public func activate(condition: APICondition, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
+    public func activate(condition: APIConfiguration, completion: @escaping (ServiceResult) -> Void) -> Cancellable {
         return invokeActivate(parameter: (), condition: condition, completion: completion)
     }
 }
