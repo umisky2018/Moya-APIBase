@@ -19,11 +19,7 @@
 		2CBD5106248E2A4E001818CB /* APIServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529FD23BFB7E900859AA0 /* APIServiceType.swift */; };
 		2CBD5107248E2A4E001818CB /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FA39023BD1623004EF2E0 /* APIConfiguration.swift */; };
 		2CBD5108248E2A4E001818CB /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3529F523BFB39900859AA0 /* Cancellable.swift */; };
-		2CBD510B248E2B49001818CB /* MoyaAPIBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; };
-		2CBD510C248E2B49001818CB /* MoyaAPIBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CBD5112248E2D01001818CB /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 2CBD5111248E2D01001818CB /* Moya */; };
-		2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88623C067E200361737 /* ResponseStatus.swift */; };
-		2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88423C067D600361737 /* ResponseError.swift */; };
 		2CBD511D248E4CA7001818CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD511C248E4CA7001818CB /* AppDelegate.swift */; };
 		2CBD5121248E4CA7001818CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBD5120248E4CA7001818CB /* ViewController.swift */; };
 		2CBD5124248E4CA7001818CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CBD5122248E4CA7001818CB /* Main.storyboard */; };
@@ -42,21 +38,9 @@
 		2CC0D1482490C73C00437AED /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0D1442490C73C00437AED /* WeatherModel.swift */; };
 		2CC0D1492490C73C00437AED /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0D1452490C73C00437AED /* WeatherService.swift */; };
 		2CC0D14A2490C73C00437AED /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC0D1462490C73C00437AED /* WeatherInfo.swift */; };
-		2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CEBFF78248DE14F004DB1CD /* DefaultInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */; };
-		2CEBFF79248DE14F004DB1CD /* DefaultParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F87E23C04EEC00361737 /* DefaultParserType.swift */; };
-		2CEBFF7A248DE14F004DB1CD /* DefaultEngineType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88023C05A5A00361737 /* DefaultEngineType.swift */; };
-		2CEBFF7B248DE14F004DB1CD /* DefaultServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F88223C0674E00361737 /* DefaultServiceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2CBD510D248E2B49001818CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2C7FA36923B8CEBC004EF2E0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CBD50F5248E2A0D001818CB;
-			remoteInfo = MoyaAPIBase;
-		};
 		2CBD513F248E5118001818CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C7FA36923B8CEBC004EF2E0 /* Project object */;
@@ -78,17 +62,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CEBFF84248DE8D6004DB1CD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2CBD510C248E2B49001818CB /* MoyaAPIBase.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -97,12 +70,6 @@
 		2C3529F923BFB76600859AA0 /* APIParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIParserType.swift; sourceTree = "<group>"; };
 		2C3529FB23BFB7DF00859AA0 /* APIEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEngineType.swift; sourceTree = "<group>"; };
 		2C3529FD23BFB7E900859AA0 /* APIServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceType.swift; sourceTree = "<group>"; };
-		2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInfoType.swift; sourceTree = "<group>"; };
-		2C55F87E23C04EEC00361737 /* DefaultParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultParserType.swift; sourceTree = "<group>"; };
-		2C55F88023C05A5A00361737 /* DefaultEngineType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEngineType.swift; sourceTree = "<group>"; };
-		2C55F88223C0674E00361737 /* DefaultServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultServiceType.swift; sourceTree = "<group>"; };
-		2C55F88423C067D600361737 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
-		2C55F88623C067E200361737 /* ResponseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStatus.swift; sourceTree = "<group>"; };
 		2C7FA37F23BCF39B004EF2E0 /* Associate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Associate.swift; sourceTree = "<group>"; };
 		2C7FA38523BCF492004EF2E0 /* InfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoType.swift; sourceTree = "<group>"; };
 		2C7FA38723BCF4B2004EF2E0 /* ParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserType.swift; sourceTree = "<group>"; };
@@ -130,9 +97,6 @@
 		2CC0D1442490C73C00437AED /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		2CC0D1452490C73C00437AED /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		2CC0D1462490C73C00437AED /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
-		2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultAPIBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultAPIBase.h; sourceTree = "<group>"; };
-		2CEBFF70248DE0D8004DB1CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,14 +113,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBD513D248E5118001818CB /* MoyaAPIBase.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CEBFF6A248DE0D8004DB1CD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2CBD510B248E2B49001818CB /* MoyaAPIBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +135,6 @@
 			children = (
 				2CBD511B248E4CA7001818CB /* APIBaseDemo */,
 				2CBD50F7248E2A0D001818CB /* MoyaAPIBase */,
-				2CEBFF6E248DE0D8004DB1CD /* DefaultAPIBase */,
 				2C7FA37323B8CEBC004EF2E0 /* Products */,
 				2CEBFF7F248DE8D6004DB1CD /* Frameworks */,
 			);
@@ -188,7 +143,6 @@
 		2C7FA37323B8CEBC004EF2E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */,
 				2CBD50F6248E2A0D001818CB /* MoyaAPIBase.framework */,
 				2CBD511A248E4CA7001818CB /* APIBaseDemo.app */,
 			);
@@ -308,53 +262,6 @@
 			path = APIs;
 			sourceTree = "<group>";
 		};
-		2CEBFF6E248DE0D8004DB1CD /* DefaultAPIBase */ = {
-			isa = PBXGroup;
-			children = (
-				2CEBFF76248DE10E004DB1CD /* Sources */,
-				2CEBFF75248DE0EE004DB1CD /* Supporting Files */,
-			);
-			path = DefaultAPIBase;
-			sourceTree = "<group>";
-		};
-		2CEBFF75248DE0EE004DB1CD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2CEBFF6F248DE0D8004DB1CD /* DefaultAPIBase.h */,
-				2CEBFF70248DE0D8004DB1CD /* Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2CEBFF76248DE10E004DB1CD /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				2CEBFF77248DE12B004DB1CD /* OOTB */,
-				2CEBFF7E248DE805004DB1CD /* Type */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		2CEBFF77248DE12B004DB1CD /* OOTB */ = {
-			isa = PBXGroup;
-			children = (
-				2C55F87C23C03C9A00361737 /* DefaultInfoType.swift */,
-				2C55F87E23C04EEC00361737 /* DefaultParserType.swift */,
-				2C55F88023C05A5A00361737 /* DefaultEngineType.swift */,
-				2C55F88223C0674E00361737 /* DefaultServiceType.swift */,
-			);
-			path = OOTB;
-			sourceTree = "<group>";
-		};
-		2CEBFF7E248DE805004DB1CD /* Type */ = {
-			isa = PBXGroup;
-			children = (
-				2C55F88623C067E200361737 /* ResponseStatus.swift */,
-				2C55F88423C067D600361737 /* ResponseError.swift */,
-			);
-			path = Type;
-			sourceTree = "<group>";
-		};
 		2CEBFF7F248DE8D6004DB1CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,14 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBD50FA248E2A0D001818CB /* MoyaAPIBase.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CEBFF68248DE0D8004DB1CD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2CEBFF71248DE0D8004DB1CD /* DefaultAPIBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,26 +323,6 @@
 			productReference = 2CBD511A248E4CA7001818CB /* APIBaseDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2CEBFF6C248DE0D8004DB1CD /* DefaultAPIBase */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2CEBFF74248DE0D8004DB1CD /* Build configuration list for PBXNativeTarget "DefaultAPIBase" */;
-			buildPhases = (
-				2CEBFF68248DE0D8004DB1CD /* Headers */,
-				2CEBFF69248DE0D8004DB1CD /* Sources */,
-				2CEBFF6A248DE0D8004DB1CD /* Frameworks */,
-				2CEBFF6B248DE0D8004DB1CD /* Resources */,
-				2CEBFF84248DE8D6004DB1CD /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2CBD510E248E2B49001818CB /* PBXTargetDependency */,
-			);
-			name = DefaultAPIBase;
-			productName = DefaultAPIBase;
-			productReference = 2CEBFF6D248DE0D8004DB1CD /* DefaultAPIBase.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -458,9 +337,6 @@
 						CreatedOnToolsVersion = 11.3;
 					};
 					2CBD5119248E4CA7001818CB = {
-						CreatedOnToolsVersion = 11.3;
-					};
-					2CEBFF6C248DE0D8004DB1CD = {
 						CreatedOnToolsVersion = 11.3;
 					};
 				};
@@ -483,7 +359,6 @@
 			targets = (
 				2CBD5119248E4CA7001818CB /* APIBaseDemo */,
 				2CBD50F5248E2A0D001818CB /* MoyaAPIBase */,
-				2CEBFF6C248DE0D8004DB1CD /* DefaultAPIBase */,
 			);
 		};
 /* End PBXProject section */
@@ -503,13 +378,6 @@
 				2CBD5129248E4CAA001818CB /* LaunchScreen.storyboard in Resources */,
 				2CBD5126248E4CAA001818CB /* Assets.xcassets in Resources */,
 				2CBD5124248E4CA7001818CB /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2CEBFF6B248DE0D8004DB1CD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,27 +422,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2CEBFF69248DE0D8004DB1CD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2CEBFF7A248DE14F004DB1CD /* DefaultEngineType.swift in Sources */,
-				2CEBFF79248DE14F004DB1CD /* DefaultParserType.swift in Sources */,
-				2CEBFF78248DE14F004DB1CD /* DefaultInfoType.swift in Sources */,
-				2CBD5114248E2E57001818CB /* ResponseError.swift in Sources */,
-				2CEBFF7B248DE14F004DB1CD /* DefaultServiceType.swift in Sources */,
-				2CBD5113248E2E57001818CB /* ResponseStatus.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2CBD510E248E2B49001818CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2CBD50F5248E2A0D001818CB /* MoyaAPIBase */;
-			targetProxy = 2CBD510D248E2B49001818CB /* PBXContainerItemProxy */;
-		};
 		2CBD5140248E5118001818CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2CBD50F5248E2A0D001818CB /* MoyaAPIBase */;
@@ -812,58 +662,6 @@
 			};
 			name = Release;
 		};
-		2CEBFF72248DE0D8004DB1CD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 72ZBLW4BL8;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "DefaultAPIBase/Supporting Files/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = chenshu.DefaultAPIBase;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		2CEBFF73248DE0D8004DB1CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 72ZBLW4BL8;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "DefaultAPIBase/Supporting Files/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = chenshu.DefaultAPIBase;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -890,15 +688,6 @@
 			buildConfigurations = (
 				2CBD512C248E4CAA001818CB /* Debug */,
 				2CBD512D248E4CAA001818CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2CEBFF74248DE0D8004DB1CD /* Build configuration list for PBXNativeTarget "DefaultAPIBase" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2CEBFF72248DE0D8004DB1CD /* Debug */,
-				2CEBFF73248DE0D8004DB1CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
