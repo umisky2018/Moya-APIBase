@@ -9,6 +9,12 @@
 import Foundation
 import MoyaAPIBase
 
+let loggerProvider = Provider<TransitionTarget>(plugins: [RequestPlugin.logger])
+
+extension APIConfiguration {
+    static let defaultAPIConfiguration = APIConfiguration.default.specify(provider: loggerProvider)
+}
+
 protocol DemoServiceType: APIServiceType where Engine == DemoEngin {
     
     associatedtype Engin = DemoEngin
@@ -21,12 +27,12 @@ extension DemoServiceType {
     }
     
     @discardableResult
-    func activate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<ServiceTarget, Error>) -> Void) -> Cancellable {
+    func activate(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, Error>) -> Void) -> Cancellable {
         return defaultActivate(parameter: parameter, condition: condition, completion: completion)
     }
     
     @discardableResult
-    func activateNormal(parameter: Info.Parameter, condition: APIConfiguration = .default, completion: @escaping (Result<ServiceTarget, DemoError>) -> Void) -> Cancellable {
+    func activateNormal(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
         return activate(parameter: parameter, condition: condition) { result in
             switch result {
             case .success(let target):
@@ -43,7 +49,7 @@ extension DemoServiceType {
 extension DemoServiceType where Info.Parameter == Void {
     
     @discardableResult
-    func activateNormal(condition: APIConfiguration = .default, completion: @escaping (Result<ServiceTarget, DemoError>) -> Void) -> Cancellable {
+    func activateNormal(condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
         return defaultActivate(parameter: (), condition: condition) { result in
             switch result {
             case .success(let target):
@@ -75,12 +81,5 @@ extension DemoServiceType {
     /// 引擎产物 ---- 转换 ---->  解析器原始数据
     func parserOriginTransition(info: Engine.Target) throws -> Parser.Origin {
         return try info.get()
-    }
-}
-
-extension DemoServiceType where Parser.Target == ServiceTarget {
-    
-    func serviceResultTransition(info: Parser.Target) throws -> ServiceTarget {
-        return info
     }
 }

@@ -13,12 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        WeatherService().activateNormal(parameter: "1012201011") { result in
+        WeatherService().activateNormal(parameter: "101220101") { result in
             switch result {
             case .success(let value):
-                print(value)
+                print(value.message ?? "请求成功")
             case .failure(let error):
-                print(error)
+                print("错误描述：\(error.localizedDescription)")
+                print("错误提示：\(error.errorTips)")
+                print("错误详情：\(error.errorDetail)")
             }
         }
     }

@@ -38,3 +38,21 @@ extension Error {
         return DemoError(status: .wrapError, message: nil, error: self)
     }
 }
+
+extension DemoError {
+    
+    var errorTips: String {
+        return self.message ?? ""
+    }
+    
+    var errorDetail: String {
+        return self.underlyingError.debugDescription
+    }
+}
+
+extension DemoError: LocalizedError {
+
+    public var errorDescription: String? {
+        return status.description
+    }
+}
