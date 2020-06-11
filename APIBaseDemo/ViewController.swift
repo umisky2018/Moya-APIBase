@@ -23,6 +23,17 @@ class ViewController: UIViewController {
                 print("错误详情：\(error.errorDetail)")
             }
         }
+        
+        WeatherService().activateNormal(parameter: "101220101-") { result in
+            switch result {
+            case .success(let value):
+                print(value.message ?? "请求成功")
+            case .failure(let error):
+                print("错误描述：\(error.localizedDescription)")
+                print("错误提示：\(error.errorTips)")
+                print("错误详情：\(error.errorDetail)")
+            }
+        }
     }
 }
 

@@ -21,7 +21,7 @@ extension RequestPlugin: PluginType {
     }
     
     public func willSend(_ request: RequestType, target: TargetType) {
-        output(request: request.request, seprator: true)
+        //        output(request: request.request, seprator: true)
     }
     
     public func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
@@ -41,7 +41,8 @@ extension RequestPlugin {
         
         print(
             """
-            ----------------------------------------------------------------
+            
+            ================================================================
             | 请求信息 : \(request?.httpMethod ?? "unknown") \(request?.url?.absoluteString ?? "")
             ----------------------------------------------------------------
             """
@@ -74,7 +75,7 @@ extension RequestPlugin {
     
     public func output(response: Response?) {
         
-//        output(request: response?.request, seprator: false)
+        output(request: response?.request, seprator: false)
         
         #if DEBUG
         
@@ -114,7 +115,8 @@ extension RequestPlugin {
             """
             ----------------------------------------------------------------
             \(String(data: formatData, encoding: .utf8) ?? "")
-            ----------------------------------------------------------------
+            ================================================================
+            
             """
         )
     }
