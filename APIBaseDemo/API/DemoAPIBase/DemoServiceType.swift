@@ -61,6 +61,36 @@ extension DemoServiceType where Info.Parameter == Void {
     }
 }
 
+extension DemoServiceType where Parser: DemoParserType, Parser.Target == DefaultTarget<Parser.Payload> {
+    
+    @discardableResult
+    func activateUnwrap(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Payload, DemoError>) -> Void) -> Cancellable {
+        return activateNormal(parameter: parameter, condition: condition) { result in
+            switch result {
+            case .success(let value):
+                completion(.success(value.data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
+extension DemoServiceType where Parser: DemoParserType, Parser.Target == OptionalTarget<Parser.Payload> {
+    
+    @discardableResult
+    func activateUnwrap(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Payload?, DemoError>) -> Void) -> Cancellable {
+        return activateNormal(parameter: parameter, condition: condition) { result in
+            switch result {
+            case .success(let value):
+                completion(.success(value.data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+}
+
 // MARK: - Transition
 
 extension DemoServiceType {

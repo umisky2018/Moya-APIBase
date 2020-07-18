@@ -15,23 +15,19 @@ class ViewController: UIViewController {
         
         WeatherService().activateNormal(parameter: "101220101") { result in
             switch result {
-            case .success(let value):
+            case .success(let value/* DefaultTarget<WeatherInfoModel> */):
                 print(value.message ?? "请求成功")
             case .failure(let error):
                 print("错误描述：\(error.localizedDescription)")
-                print("错误提示：\(error.errorTips)")
-                print("错误详情：\(error.errorDetail)")
             }
         }
         
-        WeatherService().activateNormal(parameter: "101220101-") { result in
+        WeatherService().activateUnwrap(parameter: "101220101") { result in
             switch result {
-            case .success(let value):
-                print(value.message ?? "请求成功")
+            case .success(let value/* WeatherInfoModel */):
+                print(value)
             case .failure(let error):
-                print("错误描述：\(error.localizedDescription)")
-                print("错误提示：\(error.errorTips)")
-                print("错误详情：\(error.errorDetail)")
+                print(error.localizedDescription)
             }
         }
     }
