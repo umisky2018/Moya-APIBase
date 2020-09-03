@@ -33,12 +33,19 @@ extension APIServiceType {
         }
         
         return getEngine().startEngine(info: enginInfo, condition: condition) { result in
-            do {
-                let parserOrigin = try self.parserOriginTransition(info: result)
-                let parserTarget = try self.getParser().parse(origin: parserOrigin)
-                completion(.success(parserTarget))
-            } catch {
-                completion(.failure(error))
+            // 全局队列解析
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    let parserOrigin = try self.parserOriginTransition(info: result)
+                    let parserTarget = try self.getParser().parse(origin: parserOrigin)
+                    DispatchQueue.main.async {
+                        completion(.success(parserTarget))
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(.failure(error))
+                    }
+                }
             }
         }
     }
