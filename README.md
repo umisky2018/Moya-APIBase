@@ -1,6 +1,7 @@
 # Moya-APIBase
 基于离散型接口设计，对 Moya 进行封装。
 
+参考 onevcat [面向协议编程与 Cocoa 的邂逅 (下)](https://onevcat.com/2016/12/pop-cocoa-2/)
 
 ### 做个对比
 ---
