@@ -9,107 +9,100 @@
 import Foundation
 import MoyaAPIBase
 
-let loggerProvider = Provider<TransitionTarget>(plugins: [RequestPlugin.logger])
+let loggerProvider = Provider<TransitionTarget>()
 
 extension APIConfiguration {
-    static let defaultAPIConfiguration = APIConfiguration.default.specify(provider: loggerProvider)
+    static let demoConfiguration = APIConfiguration.default.specify(provider: loggerProvider)
 }
 
-protocol DemoServiceType: APIServiceType where Engine == DemoEngin {
+protocol DemoServiceType: APIServiceType where Info: DemoInfoType, Parser: DemoParserType {
     
-    associatedtype Engin = DemoEngin
+    func activateTargetRequest(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable
 }
 
 extension DemoServiceType {
     
-    func getEngine() -> Engine {
-        return DemoEngin()
-    }
-    
+    /// 获取目标内容
     @discardableResult
-    func activate(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, Error>) -> Void) -> Cancellable {
-        return defaultActivate(parameter: parameter, condition: condition, completion: completion)
-    }
-    
-    @discardableResult
-    func activateNormal(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
-        return activate(parameter: parameter, condition: condition) { result in
+    func activateTargetRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
+        _activate(parameter: parameter, condition: condition) { result in
+            var rst: Result<Parser.Target, DemoError>
             switch result {
-            case .success(let target):
-                completion(.success(target))
+            case .success(let response):
+                do {
+                    let target = try self.getParser().parseTarget(origin: response)
+                    rst = .success(target)
+                } catch {
+                    rst = .failure(error.asDemoError())
+                }
             case .failure(let error):
-                completion(.failure(error.asDemoError()))
+                rst = .failure(error)
             }
+            DispatchQueue.main.async { completion(rst) }
         }
     }
-}
-
-// MARK: - Convenient
-
-extension DemoServiceType where Info.Parameter == Void {
     
+    /// 获取状态
     @discardableResult
-    func activateNormal(condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
-        return defaultActivate(parameter: (), condition: condition) { result in
+    func activateStatusRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<StatusTarget, DemoError>) -> Void) -> Cancellable {
+        return _activate(parameter: parameter, condition: condition) { result in
+            var rst: Result<StatusTarget, DemoError>
             switch result {
-            case .success(let target):
-                completion(.success(target))
+            case .success(let response):
+                do {
+                    let target = try self.getParser().parseStatus(origin: response)
+                    rst = .success(target)
+                } catch {
+                    rst = .failure(error.asDemoError())
+                }
             case .failure(let error):
-                completion(.failure(error.asDemoError()))
+                rst = .failure(error)
             }
+            DispatchQueue.main.async { completion(rst) }
         }
     }
-}
-
-extension DemoServiceType where Parser: DemoParserType, Parser.Target == DefaultTarget<Parser.Payload> {
     
+    /// 获取完整结果
     @discardableResult
-    func activateUnwrap(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Payload, DemoError>) -> Void) -> Cancellable {
-        return activateNormal(parameter: parameter, condition: condition) { result in
+    func activateResultRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<DefaultTarget<Parser.Target>, DemoError>) -> Void) -> Cancellable {
+        return _activate(parameter: parameter, condition: condition) { result in
+            var rst: Result<DefaultTarget<Parser.Target>, DemoError>
             switch result {
-            case .success(let value):
-                completion(.success(value.data))
+            case .success(let response):
+                do {
+                    let target = try self.getParser().parseResult(origin: response)
+                    rst = .success(target)
+                } catch {
+                    rst = .failure(error.asDemoError())
+                }
             case .failure(let error):
-                completion(.failure(error))
+                rst = .failure(error)
             }
+            DispatchQueue.main.async { completion(rst) }
         }
     }
-}
-
-extension DemoServiceType where Parser: DemoParserType, Parser.Target == OptionalTarget<Parser.Payload> {
     
-    @discardableResult
-    func activateUnwrap(parameter: Info.Parameter, condition: APIConfiguration = .defaultAPIConfiguration, completion: @escaping (Result<Parser.Payload?, DemoError>) -> Void) -> Cancellable {
-        return activateNormal(parameter: parameter, condition: condition) { result in
-            switch result {
-            case .success(let value):
-                completion(.success(value.data))
-            case .failure(let error):
-                completion(.failure(error))
+    /// ⚠️ 回调是异步的
+    private func _activate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<Response, DemoError>) -> Void) -> Cancellable {
+        let info = getInfo()
+        var enginInfo: Engine.Info
+        
+        do {
+            enginInfo = try self.engineInfoTransition(info: info, parameter: parameter)
+        } catch {
+            completion(.failure(error.asDemoError()))
+            return VoidCancellable()
+        }
+        
+        return getEngine().startEngine(info: enginInfo, condition: condition) { result in
+            DispatchQueue.global(qos: .background).async {
+                do {
+                    let parserOrigin = try self.parserOriginTransition(info: result)
+                    completion(.success(parserOrigin))
+                } catch {
+                    completion(.failure(error.asDemoError()))
+                }
             }
         }
-    }
-}
-
-// MARK: - Transition
-
-extension DemoServiceType {
-    
-    /// 数据信息  ---- 转换 ---->  引擎燃料
-    func engineInfoTransition(info: Info, parameter: Info.Parameter) throws -> Engine.Info {
-        let _url = URL(string: info.hostPath())
-        guard let url = _url else { throw DemoError(status: .hostError, message: nil, error: nil) }
-        let path = info.relativePath(parameter: parameter)
-        let method = info.method(parameter: parameter)
-        let task = info.task(parameter: parameter)
-        let headers = info.headers(parameter: parameter)
-        let validation = info.validation()
-        let sample = info.sampleData()
-        return TransitionTarget(baseURL: url, path: path, method: method, sampleData: sample, task: task, headers: headers, validationType: validation)
-    }
-    
-    /// 引擎产物 ---- 转换 ---->  解析器原始数据
-    func parserOriginTransition(info: Engine.Target) throws -> Parser.Origin {
-        return try info.get()
     }
 }

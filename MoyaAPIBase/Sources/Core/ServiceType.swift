@@ -15,9 +15,7 @@ public protocol ServiceType {
     associatedtype Parser: ParserType
     
     associatedtype Engine: EngineType
-    
-    associatedtype ServiceResult
-    
+        
     /// 获取信息
     func getInfo() -> Info
     
@@ -26,7 +24,4 @@ public protocol ServiceType {
     
     /// 获取引擎
     func getEngine() -> Engine
-    
-    /// 激活请求流程
-    func activate(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (ServiceResult) -> Void) -> Cancellable
 }

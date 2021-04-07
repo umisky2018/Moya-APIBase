@@ -9,9 +9,7 @@
 import Foundation
 import MoyaAPIBase
 
-struct WeatherParser: DemoParserType {    
+struct WeatherParser: DemoParserType {
     
-    typealias Payload = WeatherInfoModel
-    
-    typealias Target = DefaultTarget<Payload>
+    typealias Target = WeatherInfoModel
 }

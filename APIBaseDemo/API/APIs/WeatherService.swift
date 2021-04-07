@@ -9,8 +9,8 @@
 import Foundation
 import MoyaAPIBase
 
-struct WeatherService: DemoServiceType {
-
+struct WeatherService: DemoServiceType {    
+    
     typealias Info = WeatherInfo
 
     typealias Parser = WeatherParser

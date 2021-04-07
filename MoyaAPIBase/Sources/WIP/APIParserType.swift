@@ -11,4 +11,7 @@ import Foundation
 public protocol APIParserType: ParserType where Origin == Response {
     
     associatedtype Origin = Response
+    
+    /// 解析方法
+    func parseTarget(origin: Origin) throws -> Target
 }

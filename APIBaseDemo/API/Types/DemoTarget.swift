@@ -8,6 +8,13 @@
 
 import Foundation
 
+struct StatusTarget: Decodable {
+    
+    var status: Int
+    
+    var message: String?
+}
+
 struct DefaultTarget<Payload>: Decodable where Payload: Decodable {
     
     var status: Int
@@ -17,17 +24,7 @@ struct DefaultTarget<Payload>: Decodable where Payload: Decodable {
     var data: Payload
 }
 
-struct OptionalTarget<Payload>: Decodable where Payload: Decodable {
-    
-    var status: Int
-    
-    var message: String?
-    
-    var data: Payload?
-}
-
-// MARK: - Parser codable
-
+// MARK: - Parser
 
 struct InternalStatusTarget: Decodable {
     
@@ -36,20 +33,8 @@ struct InternalStatusTarget: Decodable {
     var message: String?
 }
 
-struct InternalOptionalTarget<Payload>: Decodable where Payload: Decodable {
-    
-    var status: Int
-    
-    var message: String?
-    
-    var data: Payload?
-}
-
+/// 单解析 Payload 的模型
 struct InternalDefaultTarget<Payload>: Decodable where Payload: Decodable {
     
-    var status: Int
-    
     var data: Payload
-
-    var message: String?
 }

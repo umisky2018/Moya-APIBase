@@ -35,8 +35,8 @@ extension DemoInfoType {
 
 extension DemoInfoType {
     
-    func hostPath() -> String {
-        return "http://t.weather.sojson.com"
+    func hostPath() -> URL {
+        return URL(string:"http://www.weather.com.cn")!
     }
     
     func task(parameter: Parameter) -> APITask {

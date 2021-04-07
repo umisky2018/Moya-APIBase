@@ -1,5 +1,5 @@
 //
-//  DemoParserType.swift
+//  DefaultParserType.swift
 //  APIBaseDemo
 //
 //  Created by umisky on 2020/6/10.
@@ -9,24 +9,28 @@
 import Foundation
 import MoyaAPIBase
 
-protocol DemoParserType: APIParserType where Target: Decodable, Payload: Decodable {
+protocol DemoParserType: APIParserType where Target: Decodable {
     
-    associatedtype Payload
+    func parseStatus(origin: Origin) throws -> StatusTarget
+
+    func parseResult(origin: Origin) throws -> DefaultTarget<Target>
 }
 
-extension DemoParserType where Target == DefaultTarget<Payload> {
-
-    func parse(origin: Origin) throws -> Target {
-        let internalTarget = try defautParser(origin: origin)
-        return DefaultTarget(status: internalTarget.status, message: internalTarget.message, data: internalTarget.data)
+extension DemoParserType {
+    
+    func parseTarget(origin: Origin) throws -> Target {
+        let result = try self.optionalParser(origin: origin)
+        return result.data
     }
-}
 
-extension DemoParserType where Target == OptionalTarget<Payload> {
+    func parseStatus(origin: Origin) throws -> StatusTarget {
+        let result = try self.statusValidation(origin: origin)
+        return StatusTarget(status: result.status, message: result.message)
+    }
 
-    func parse(origin: Origin) throws -> Target {
-        let internalTarget = try optionalParser(origin: origin)
-        return OptionalTarget(status: internalTarget.status, message: internalTarget.message, data: internalTarget.data)
+    func parseResult(origin: Origin) throws -> DefaultTarget<Target> {
+        let result = try self.optionalParser(origin: origin)
+        return result
     }
 }
 
@@ -35,7 +39,7 @@ extension DemoParserType where Target == OptionalTarget<Payload> {
 extension DemoParserType {
     
     @discardableResult
-    func statusValidation(origin: Origin) throws -> InternalStatusTarget {
+    fileprivate func statusValidation(origin: Origin) throws -> StatusTarget {
         let jsonDecoder = JSONDecoder()
         var target: InternalStatusTarget
         do {
@@ -48,24 +52,21 @@ extension DemoParserType {
         if !status.isSuccess {
             throw DemoError(status: status, message: target.message, error: nil)
         }
-        return target
+        return StatusTarget(status: statusCode, message: target.message)
     }
     
-    func optionalParser(origin: Origin) throws -> InternalOptionalTarget<Payload> {
-        try statusValidation(origin: origin)
+    fileprivate func optionalParser(origin: Origin) throws -> DefaultTarget<Target> {
+        // 先判断响应的状态，能继续往下就是成功了
+        let status = try statusValidation(origin: origin)
+        
         let jsonDecoder = JSONDecoder()
-        let target: InternalOptionalTarget<Payload>
+        let target: InternalDefaultTarget<Target>
         do {
-            target = try jsonDecoder.decode(InternalOptionalTarget<Payload>.self, from: origin.data)
+            target = try jsonDecoder.decode(InternalDefaultTarget<Target>.self, from: origin.data)
         } catch {
+            // 请求成功，但是数据解析失败。
             throw DemoError(status: .parseFailed, message: "数据解析失败", error: error)
         }
-        return target
-    }
-    
-    func defautParser(origin: Origin) throws -> InternalDefaultTarget<Payload> {
-        let target = try optionalParser(origin: origin)
-        guard let payload = target.data else { throw DemoError(status: .dataNotFound) }
-        return InternalDefaultTarget(status: target.status, data: payload, message: target.message)
+        return DefaultTarget(status: status.status, message: status.message, data: target.data)
     }
 }

@@ -11,17 +11,17 @@ import MoyaAPIBase
 
 struct WeatherInfo: DemoInfoType {
     
-    typealias Parameter = String
+    typealias Parameter = Void
     
-    func relativePath(parameter: String) -> String {
-        return "/api/weather/city/\(parameter)"
+    func relativePath(parameter: Parameter) -> String {
+        return "/data/sk/101190408.html"
     }
     
-    func method(parameter: String) -> APIMethod {
+    func method(parameter: Parameter) -> APIMethod {
         return .get
     }
         
-    func invokeQuery(parameter: WeatherInfo.Parameter) -> [String : Any]? {
+    func invokeQuery(parameter: Parameter) -> [String : Any]? {
         return nil
     }
 }

@@ -16,7 +16,4 @@ public protocol EngineType {
     
     /// 引擎产物
     associatedtype Target
-    
-    /// 启动引擎
-    func startEngine(info: Info, condition: APIConfiguration, completion: @escaping (Target) -> Void) -> Cancellable
 }

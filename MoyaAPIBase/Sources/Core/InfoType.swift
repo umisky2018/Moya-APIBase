@@ -15,7 +15,7 @@ public protocol InfoType {
     associatedtype Parameter
     
     /// 主机地址
-    func hostPath() -> String
+    func hostPath() -> URL
     
     /// 相对地址
     func relativePath(parameter: Parameter) -> String

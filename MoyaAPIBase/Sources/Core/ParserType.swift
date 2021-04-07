@@ -16,7 +16,4 @@ public protocol ParserType {
     
     /// 目标数据类型
     associatedtype Target
-    
-    /// 解析方法
-    func parse(origin: Origin) throws -> Target
 }

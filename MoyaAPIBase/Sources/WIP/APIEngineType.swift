@@ -8,17 +8,19 @@
 
 import Foundation
 
-public protocol APIEngineType: EngineType {
+public protocol APIEngineType: EngineType where Info == TransitionTarget, Target == Result<Response, MoyaError> {
 
     associatedtype Info = TransitionTarget
 
     associatedtype Target = Result<Response, MoyaError>
+    
+    /// 启动引擎
+    func startEngine(info: Info, condition: APIConfiguration, completion: @escaping (Target) -> Void) -> Cancellable
 }
 
 extension APIEngineType {
     
-    /// 默认启动引擎流程
-    public func defaultStartEngine(info: TransitionTarget, condition: APIConfiguration, completion: @escaping (Result<Response, MoyaError>) -> Void) -> Cancellable {
+    public func startEngine(info: Info, condition: APIConfiguration, completion: @escaping (Target) -> Void) -> Cancellable {
         return condition.inUseProvider.request(info, callbackQueue: condition.dispatchQueue, progress: condition.progressBlock) { result in
             switch result {
             case .success(let response):
@@ -29,3 +31,5 @@ extension APIEngineType {
         }
     }
 }
+
+public struct MoyaEngin: APIEngineType { }
