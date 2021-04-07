@@ -17,14 +17,14 @@ extension APIConfiguration {
 
 protocol DemoServiceType: APIServiceType where Info: DemoInfoType, Parser: DemoParserType {
     
-    func activateTargetRequest(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable
+    func requestTarget(parameter: Info.Parameter, condition: APIConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable
 }
 
 extension DemoServiceType {
     
     /// 获取目标内容
     @discardableResult
-    func activateTargetRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
+    func requestTarget(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
         _activate(parameter: parameter, condition: condition) { result in
             var rst: Result<Parser.Target, DemoError>
             switch result {
@@ -44,7 +44,7 @@ extension DemoServiceType {
     
     /// 获取状态
     @discardableResult
-    func activateStatusRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<StatusTarget, DemoError>) -> Void) -> Cancellable {
+    func requestStatus(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<StatusTarget, DemoError>) -> Void) -> Cancellable {
         return _activate(parameter: parameter, condition: condition) { result in
             var rst: Result<StatusTarget, DemoError>
             switch result {
@@ -64,7 +64,7 @@ extension DemoServiceType {
     
     /// 获取完整结果
     @discardableResult
-    func activateResultRequest(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<DefaultTarget<Parser.Target>, DemoError>) -> Void) -> Cancellable {
+    func requestResult(parameter: Info.Parameter, condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<DefaultTarget<Parser.Target>, DemoError>) -> Void) -> Cancellable {
         return _activate(parameter: parameter, condition: condition) { result in
             var rst: Result<DefaultTarget<Parser.Target>, DemoError>
             switch result {
@@ -104,5 +104,26 @@ extension DemoServiceType {
                 }
             }
         }
+    }
+}
+
+extension DemoServiceType where Info.Parameter == Void {
+    
+    /// 获取目标内容（参数为 Void ）
+    @discardableResult
+    func requestTarget(condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<Parser.Target, DemoError>) -> Void) -> Cancellable {
+        return requestTarget(parameter: (), condition: condition, completion: completion)
+    }
+    
+    /// 获取状态（参数为 Void ）
+    @discardableResult
+    func requestStatus(condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<StatusTarget, DemoError>) -> Void) -> Cancellable {
+        return requestStatus(parameter: (), condition: condition, completion: completion)
+    }
+    
+    /// 获取完整结果（参数为 Void ）
+    @discardableResult
+    func requestResult(condition: APIConfiguration = .demoConfiguration, completion: @escaping (Result<DefaultTarget<Parser.Target>, DemoError>) -> Void) -> Cancellable {
+        return requestResult(parameter: (), condition: condition, completion: completion)
     }
 }
