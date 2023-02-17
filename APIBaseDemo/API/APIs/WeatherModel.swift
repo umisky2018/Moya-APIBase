@@ -8,6 +8,27 @@
 
 import Foundation
 
+// 返回的数据格式变了
+struct WeatherInfoModel2023: Decodable {
+    let weatherinfo: WeatherInfoDetailModel2023
+}
+
+struct WeatherInfoDetailModel2023: Decodable {
+    let temp: String?
+    let time: String?
+    let WD: String?
+    let isRadar: String?
+    let cityid: String?
+    let city: String?
+    let WS: String?
+    let WSE: String?
+    let sm: String?
+    let Radar: String?
+    let AP: String?
+    let SD: String?
+    let njd: String?
+}
+
 struct WeatherModel: Decodable {
     
     let message: String?

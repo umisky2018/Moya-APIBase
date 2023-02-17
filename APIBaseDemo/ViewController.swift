@@ -15,8 +15,8 @@ class ViewController: UIViewController {
         
         WeatherService().activate(parameter: (), condition: .demoConfiguration) { result in
             switch result {
-            case .success(let value/* WeatherInfoModel */):
-                ()
+            case .success(let value/* WeatherInfoModel2023 */):
+                print("value: \(value)")
             case .failure(let error):
                 print("错误描述：\(error.localizedDescription)")
             }

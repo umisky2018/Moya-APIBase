@@ -9,7 +9,7 @@
 import Foundation
 import MoyaAPIBase
 
-let loggerProvider = Provider<TransitionTarget>()
+let loggerProvider = Provider<TransitionTarget>(plugins: [RequestPlugin.logger])
 
 extension APIConfiguration {
     static let demoConfiguration = APIConfiguration.default.specify(provider: loggerProvider)
